@@ -1,0 +1,6 @@
+fastapi[all]
+uvicorn[standard]
+pydantic
+pydantic-settings
+openai
+google-genai

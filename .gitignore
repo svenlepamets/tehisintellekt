@@ -1,0 +1,85 @@
+#################################
+# Node / ReactJS
+#################################
+# dependencies
+node_modules/
+
+# production build
+build/
+dist/
+.next/
+
+# misc
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# a local script
+bootstrap_frontend.sh
+
+# environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+
+#################################
+# Python / Backend
+#################################
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# virtual environments
+venv/
+env/
+.env/    # if using python-dotenv, rename to something else to avoid conflict with frontend
+
+# distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+# test / coverage
+.coverage
+coverage/
+htmlcov/
+.pytest_cache/
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# mypy / pyright
+.mypy_cache/
+.pytype/
+.pyright/
+
+# Just in case
+*.sqlite3
+*.db
+
+# environment files containing secrets
+.env.backend
+*.env.bak
+
+
+#################################
+# OS files
+#################################
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Linux
+*.swp
+*.swo
