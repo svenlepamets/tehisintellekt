@@ -1,8 +1,8 @@
-# tehisintellekt.ee TEST ASSIGNMENT
+# tehisintellekt.ee test assignment
 
 # 📦 Project Overview
 
-This project is an example full-stack application to demonstrate the usage of the requirments set in job listing. It consists of a **React/Next.js frontend**, a **FastAPI backend**, containerized with **Docker**, and deployed within the **Microsoft Azure** ecosystem.
+This project is an example full-stack application to demonstrate the usage of the requirements set in the job listing. It consists of a **React/Next.js frontend**, a **FastAPI backend**, containerized with **Docker**, and deployed within the **Microsoft Azure** ecosystem.
 ---
 
 ## Tech Stack
@@ -25,13 +25,14 @@ This project is an example full-stack application to demonstrate the usage of th
 - Environment variables used for configuration
 
 To run the project, just clone the repository and run:
+
 `docker compose up`
 
 Note that the backend is currently integrated to two AI services:
 1. OpenAI API
 2. Gemini API
-Either one or both of them can be used, but at least one is needed to make the app work.
-In the future more integrations can be added.
+
+Either one or both of them can be used, but at least one is needed to make the app work. In the future more integrations can be added.
 
 The (example production) application is deployed in the **Microsoft Azure ecosystem**
 
