@@ -1,5 +1,5 @@
 # 1. Builder
-FROM node:24-alpine AS builder
+FROM node:22-alpine AS builder
 
 # Set working directory
 WORKDIR /usr/src/app
@@ -14,7 +14,7 @@ RUN npm install --prefer-offline --no-audit --progress=false
 COPY . .
 
 # 2. Runtime
-FROM node:24-alpine
+FROM node:22-alpine
 
 # Set working directory inside the container
 WORKDIR /usr/src/app
