@@ -33,7 +33,8 @@ jobs:
           output_location: "out" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
         env:
-          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}  
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }} 
+          is_static_export: true 
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -46,4 +47,5 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_KIND_OCEAN_04E06E603 }}
           action: "close"
+
 
