@@ -8,7 +8,7 @@ This project is an example full-stack application to demonstrate the usage of th
 ## Tech Stack
 
 ### **Frontend**
-- NodeJS v24
+- NodeJS v20
 - React.js
 - Next.js
 - TailwindCSS
