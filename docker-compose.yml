@@ -17,9 +17,13 @@ services:
       - backend
 
   backend:
+    platform: linux/amd64  # forces amd64 build for Azure
     build:
       context: ./backend
       dockerfile: Dockerfile
+      args:
+        PORT: 8000
+        ENVIRONMENT: dev
     container_name: TI_backend
     working_dir: /usr/src/app
     env_file:

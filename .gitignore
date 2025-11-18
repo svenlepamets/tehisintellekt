@@ -83,3 +83,4 @@ Thumbs.db
 # Linux
 *.swp
 *.swo
+backend/build_for_prod.sh
