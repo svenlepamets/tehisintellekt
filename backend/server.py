@@ -48,3 +48,7 @@ async def ask(q: Question):
 async def get_settings():
     services = get_available_services()
     return {"services": services}
+
+@app.get("/api/health")
+async def get_health():
+    return {"status": "ok"}

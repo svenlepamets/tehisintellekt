@@ -18,3 +18,7 @@ export interface Service {
 export interface Settings {
     services: Service[]
 }
+
+export interface Health {
+    status: string
+}

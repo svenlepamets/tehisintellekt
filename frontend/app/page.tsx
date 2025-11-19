@@ -99,7 +99,7 @@ export default function Home() {
       <div className="w-full max-w-3xl flex flex-col bg-white shadow-lg rounded-lg h-[90vh]">
         {/* Header */}
         <div className="p-4 border-b bg-blue-600 text-white rounded-t-lg flex items-center justify-between">
-          <h1 className="text-lg font-semibold">Questions & answers with AI 🤖</h1>
+          <h1 className="text-lg font-semibold">Questions & answers with AI</h1>
 
           <button
             onClick={() => setSettingsOpen(true)}
