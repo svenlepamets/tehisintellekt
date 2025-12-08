@@ -3,8 +3,9 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from services.settings_service import get_available_services, get_function_by_service
-from services.utils import Answer, Question, get_timestamp, parse_url
+from models.models import Answer, Health, LLMSettings, Question
+from services.settings_service import get_available_llm_services, get_function_by_llm_service
+from services.utils import get_timestamp, parse_url
 
 app = FastAPI()
 
@@ -26,17 +27,17 @@ if is_dev:
 
 
 @app.post("/api/ask")
-async def ask(q: Question):
+async def ask(q: Question) -> Answer:
     # Default values
     service = "openai"
     domain = "tehisintellekt.ee"
 
-    available_services = get_available_services()
+    available_services = get_available_llm_services()
     for available_service in available_services:
-        if available_service['service'] == q.service:
+        if available_service.service == q.service:
             service = q.service
 
-    func = get_function_by_service(service)
+    func = get_function_by_llm_service(service)
 
     domain = parse_url(str(q.domain)) or domain
     prompt = q.question[0:min(120, len(q.question)-1)]
@@ -46,11 +47,11 @@ async def ask(q: Question):
 
 
 @app.get("/api/settings")
-async def get_settings():
-    services = get_available_services()
-    return {"services": services}
+async def get_settings() -> LLMSettings:
+    services = get_available_llm_services()
+    return LLMSettings(services=services)
 
 
 @app.get("/api/health")
-async def get_health():
-    return {"status": "ok"}
+async def get_health() -> Health:
+    return Health(status="ok")

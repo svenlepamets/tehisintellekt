@@ -4,6 +4,7 @@ from unittest.mock import AsyncMock
 import pytest
 from fastapi.testclient import TestClient
 
+from models.models import LLMService
 from server import app
 
 client = TestClient(app)
@@ -34,9 +35,9 @@ async def test_ask_endpoint(monkeypatch):
     MOCK_TIMESTAMP = 123456
 
     # Do some mocking, test at the boundaries
-    monkeypatch.setattr("server.get_available_services", lambda: [{"service": "openai", "name": "OpenAI"}])
+    monkeypatch.setattr("server.get_available_llm_services", lambda: [LLMService(service="openai", name="OpenAI")])
     fake_llm = AsyncMock(return_value=(MOCK_ANSWER, MOCK_MODEL))
-    monkeypatch.setattr("server.get_function_by_service", lambda service: fake_llm)
+    monkeypatch.setattr("server.get_function_by_llm_service", lambda service: fake_llm)
     monkeypatch.setattr("server.get_timestamp", lambda: MOCK_TIMESTAMP)
 
     # Create payload
