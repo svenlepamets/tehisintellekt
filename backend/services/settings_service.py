@@ -1,6 +1,8 @@
 import os
-from services.gemini_service import get_gemini_model, get_answer_from_gemini
-from services.openai_service import get_gpt_model, get_answer_from_openai
+
+from services.gemini_service import get_answer_from_gemini, get_gemini_model
+from services.openai_service import get_answer_from_openai, get_gpt_model
+
 
 def get_available_services():
     available_services = []
@@ -11,6 +13,7 @@ def get_available_services():
     if openai_available:
         available_services.append({'service': 'openai', 'name': f'OpenAI ({get_gpt_model()})'})
     return available_services
+
 
 def get_function_by_service(service):
     funcs = {

@@ -1,13 +1,14 @@
 import os
 import re
+
 from openai import AsyncOpenAI
 
 DEFAULT_GPT_MODEL = 'gpt-5-nano'
 
+
 # 1. Define the asynchronous function
 async def get_answer_from_openai(prompt: str, domain: str, clean_ouput: bool = True) -> tuple[str, str]:
-    """
-    Makes an asynchronous API call to OpenAI
+    """Makes an asynchronous API call to OpenAI
     """
     gpt_model = get_gpt_model()
     # The API key must be set as an environment variable (OPENAI_API_KEY)
@@ -39,15 +40,17 @@ async def get_answer_from_openai(prompt: str, domain: str, clean_ouput: bool = T
                 ],
                 service_tier="flex"  # optimize costs, since it's not a production project
             )
-            print(response.__dict__)
             output = clean_output_text(response.output_text) if clean_ouput else response.output_text
             return output, gpt_model
     except Exception as e:
         return f"An error occurred during the API call: {e}", gpt_model
 
+
 def get_gpt_model():
     return os.getenv("OPENAI_MODEL", DEFAULT_GPT_MODEL)
 
+
 def clean_output_text(output: str) -> str:
+    # This cleans the OpenAI output of references/links, since it can't be currently turned off
     cleaned_output = re.sub(r"\(\[[^\]]+\]\([^)]+\)\)", "", output)
     return cleaned_output.strip()

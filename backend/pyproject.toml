@@ -1,0 +1,29 @@
+[tool.pytest.ini_options]
+pythonpath = ["."]
+filterwarnings = [
+    "ignore::Warning:google",
+]
+
+[tool.ruff]
+fix = true
+unsafe-fixes = false
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle
+    "F",    # pyflakes
+    "I",    # isort
+    "W",    # warnings
+    "B",    # bugbear
+    "C",    # comprehensions
+    "UP",   # pyupgrade
+]
+ignore = [
+    "D401",   # first-line docstring style
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

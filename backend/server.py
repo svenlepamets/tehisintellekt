@@ -1,10 +1,10 @@
-import os 
+import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from services.settings_service import get_available_services
-from services.settings_service import get_function_by_service
-from services.utils import parse_url, get_timestamp, Question, Answer
+
+from services.settings_service import get_available_services, get_function_by_service
+from services.utils import Answer, Question, get_timestamp, parse_url
 
 app = FastAPI()
 
@@ -35,19 +35,21 @@ async def ask(q: Question):
     for available_service in available_services:
         if available_service['service'] == q.service:
             service = q.service
-    
+
     func = get_function_by_service(service)
 
-    domain = parse_url(q.domain) or domain
+    domain = parse_url(str(q.domain)) or domain
     prompt = q.question[0:min(120, len(q.question)-1)]
     response, source = await func(prompt, domain)
     answer = Answer(answer=response, domain=domain, source=source, timestamp=get_timestamp())
     return answer.model_dump()
 
+
 @app.get("/api/settings")
 async def get_settings():
     services = get_available_services()
     return {"services": services}
+
 
 @app.get("/api/health")
 async def get_health():
