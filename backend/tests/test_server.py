@@ -21,6 +21,7 @@ def test_get_settings(monkeypatch):
     # Make the output predictable by ensuring one service is set up and the other one not - to test both scenarios
     monkeypatch.setenv("OPENAI_API_KEY", "mock")
     monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.delenv("FIRECRAWL_API_KEY", raising=False)
     response = client.get("/api/settings")
     assert response.status_code == 200
 
