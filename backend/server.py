@@ -9,7 +9,7 @@ from services.utils import get_timestamp, parse_url
 
 app = FastAPI()
 
-is_dev = os.getenv('DEV', None)
+is_dev = os.getenv("DEV", None)
 
 if is_dev:
     origins = [
@@ -40,7 +40,8 @@ async def ask(q: Question) -> Answer:
     func = get_function_by_llm_service(service)
 
     domain = parse_url(str(q.domain)) or domain
-    prompt = q.question[0:min(120, len(q.question)-1)]
+    allowed_prompt_length = os.getenv("ALLOWED_PROMPT_LENGTH", 120)
+    prompt = q.question[0:min(allowed_prompt_length, len(q.question))]
     response, source = await func(prompt, domain)
     answer = Answer(answer=response, domain=domain, source=source, timestamp=get_timestamp())
     return answer.model_dump()
